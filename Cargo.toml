@@ -1,0 +1,13 @@
+[package]
+name = "astro-obsidian"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.68"
+clap = { version = "4.0.32", features = ["derive", "wrap_help"] }
+comrak = "0.15.0"
+petgraph = "0.6.2"
+thiserror = "1.0.38"
