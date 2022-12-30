@@ -10,4 +10,6 @@ anyhow = "1.0.68"
 clap = { version = "4.0.32", features = ["derive", "wrap_help"] }
 comrak = "0.15.0"
 petgraph = "0.6.2"
+regex = "1.7.0"
 thiserror = "1.0.38"
+walkdir = "2.3.2"
