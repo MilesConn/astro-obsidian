@@ -40,7 +40,7 @@ pub struct JsonEdge {
     pub target: String,
 }
 
-pub fn build_graph<'a>(path: impl AsRef<Path>) -> Result<BackLinksGraph> {
+pub fn build_graph(path: impl AsRef<Path>) -> Result<BackLinksGraph> {
     let mut g = Graph::new();
     // Regex for backlinks [[back-link]]
     // This could prob be better
