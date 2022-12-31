@@ -43,7 +43,8 @@ pub struct JsonEdge {
 pub fn build_graph<'a>(path: impl AsRef<Path>) -> Result<BackLinksGraph> {
     let mut g = Graph::new();
     // Regex for backlinks [[back-link]]
-    let re = Regex::new(r"\[{2}([a-zA-z\-]*)\]{2}").unwrap();
+    // This could prob be better
+    let re = Regex::new(r"\[{2}([a-zA-z\-\s]*)\]{2}").unwrap();
 
     for file in WalkDir::new(path)
         .follow_links(true)
@@ -82,7 +83,7 @@ pub fn build_graph<'a>(path: impl AsRef<Path>) -> Result<BackLinksGraph> {
                 // Get the capture from the full match
                 let back_link = &capture[1];
                 // Prevents pet graph from panicking
-                println!("Adding edge from {:?} to {:?}", file_name, back_link);
+                println!("\tAdding edge from {:?} to {:?}", file_name, back_link);
                 let dest_node = g.add_node(back_link.to_owned());
                 g.update_edge(src_node, dest_node, ());
             }
