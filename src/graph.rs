@@ -3,7 +3,10 @@ use anyhow::anyhow;
 use petgraph::{visit::EdgeRef, Directed, Graph};
 use regex::Regex;
 use serde::Serialize;
-use std::{fs, path::Path};
+use std::{
+    fs,
+    path::{Path, PathBuf},
+};
 use walkdir::WalkDir;
 
 pub type BackLinksGraph = Graph<String, (), Directed>;
@@ -116,9 +119,10 @@ pub fn output_graph(g: BackLinksGraph) -> JsonGraphContainer {
 }
 
 impl JsonGraphContainer {
-    pub fn to_file(&self, output_path: impl AsRef<Path>) -> Result<()> {
+    pub fn to_file(&self, output_path: PathBuf) -> Result<()> {
         let json = serde_json::to_string_pretty(self)?;
-        std::fs::write(output_path, json)?;
+        std::fs::write(&output_path, json)
+            .with_context(|| format!("Failed to write to file {}", output_path.display()))?;
 
         Ok(())
     }

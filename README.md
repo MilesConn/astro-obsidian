@@ -10,3 +10,4 @@ The output format is here specified [here](https://github.com/jsongraph/json-gra
 ### TODOs
 
 - [ ] [add support for obsidian canvas](https://github.com/obsidianmd/obsidian-api/blob/master/canvas.d.ts)
+- [ ] Add tests :) 
